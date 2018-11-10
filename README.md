@@ -8,4 +8,4 @@ Dependencies:
 -lxml (to generate xml to publish to website)
 -Twilio (for practical application)
 
-This python program uses Twilio's API to help those with speaking, hearing, or typing disabilities communicate across great distance with using speech to text and text to speech systems.
+ This python program uses Twilio's API to help those with speaking, hearing, or typing disabilities communicate across great distance with using speech to text and text to speech systems.
