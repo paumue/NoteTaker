@@ -1,0 +1,2 @@
+-e git://github.com/requests/requests.git
+-e git://github.com/twilio/twilio-python
