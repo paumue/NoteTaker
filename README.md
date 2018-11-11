@@ -5,7 +5,7 @@ Dependencies:
 -flask (to create site)
 -Requests (to make http requests)
 -ngrok (to create port)
--lxml (to generate xml to publish to website)
+-difflib (for computing string deltas)
 -Twilio (for practical application)
 
- This python program uses Twilio's API to help those with speaking, hearing, or typing disabilities communicate across great distance with using speech to text and text to speech systems.
+ This python program uses Twilio's API to help those with typing inaccessibilities thru speech to text through voice call.
