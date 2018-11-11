@@ -6,14 +6,19 @@ from twilio.twiml.voice_response import Record, VoiceResponse
 import time
 from twilio.twiml.messaging_response import MessagingResponse
 from pbwrap import Pastebin as pb
+import difflib
 
 pastebin = pb("223aa89e0b48c8e3547ac1087ba5df6d")
+#pb.authenticate("pythonpaul", "password")
+
 account_sid = os.environ["TWILIO_ACCOUNT_SID"]
 auth_token = os.environ["TWILIO_AUTH_TOKEN"]
 app = Flask(__name__)
 client = Client(account_sid, auth_token)
 
 app = Flask(__name__)
+
+
 
 def formatting():
     punctuation = {"exclamation mark": "!",
@@ -32,31 +37,38 @@ def formatting():
                        "bullet": "\n -"}
     with open('data.txt', 'r') as f:
         newText = f.read()
+        list = newText.split(" ")
+        i = 0
         for key in punctuation:
-            while key in newText:
-                newText = newText.replace(key, punctuation[key])
+                while i < len(list):
+                    seq = difflib.SequenceMatcher(None, key, list[i])
+                    if seq.ratio() > 0.8:
+                        finalText = newText + " " + punctuation[key]
+                    else:
+                        finalText = newText +  " " + list[i]
+                    i += 1
 
-    pburl = pastebin.create_paste(api_paste_code=newText, api_paste_private=0, api_paste_name=None, api_paste_expire_date=None, api_paste_format=None)
+    pburl = pastebin.create_paste(api_paste_code=finalText, api_paste_private=0, api_paste_name=None, api_paste_expire_date=None, api_paste_format=None)
 
     with open('out.txt', "w") as f:
-        f.write(newText)
+        f.write(finalText)
     return pburl
 
 def formattingstring(transcription):
-    punctuation = {"exclamation mark": "!",
-                   "question mark": "?",
-                   "comma": ",",
+    punctuation = {"exclamation mark": "! ",
+                   "question mark": "? ",
+                   "comma": ", ",
                    "apostrophe": "'",
-                   "colon": ";",
-                   "semi colon": ":",
-                   "open parenthesis": "(",
-                   "closed parenthesis": ")",
-                   "open brackets": "[",
-                   "close brackets": "]",
-                   "pound sign": "£",
-                   "dollar sign": "$",
-                   "asterisk": "*",
-                   "bullet": "\n -"}
+                   "colon": ": ",
+                   "semi-colon": "; ",
+                   "open parenthesis": "( ",
+                   "closed parenthesis": ") ",
+                   "open brackets": "[ ",
+                   "close brackets": "] ",
+                   "pound sign": "£ ",
+                   "dollar sign": "$ ",
+                   "asterisk": "* ",
+                   "bullet": "\n - "}
     for key in punctuation:
         transcription = transcription.replace(key, punctuation[key])
     return transcription
