@@ -31,18 +31,10 @@ def getMessages():
 
 def makecall():
     call = client.calls.create(
-        to= "+447539002953",
-        from_= "+442033221378",
+        to= os.environ["phone_number"],
+        from_= os.environ["twilio number"],
         url = "https://b1aa8436.ngrok.io/outcall"
-        )
-def makecall1():
-    call = client.calls.create(
-        to= "+447539002953",
-        from_= "+442033221378",
-        url = "https://b1aa8436.ngrok.io/voicerec"
     )
-
-
 
 
 app = Flask(__name__)
