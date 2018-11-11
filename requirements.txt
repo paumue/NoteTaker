@@ -1,4 +1,2 @@
--e git://github.com/requests/requests.git
 -e git://github.com/twilio/twilio-python
 -e git://github.com/pallets/flask
--e git://git@github.com/lxml/lxml.git

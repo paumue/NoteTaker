@@ -26,3 +26,4 @@ for element in word_set:
     newdata = newdata + element + " "
 file = open("finaldata.txt","w")
 file.write(newdata)
+
