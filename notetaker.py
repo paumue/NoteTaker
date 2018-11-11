@@ -47,6 +47,7 @@ def message_answer():
     elif getmessage() == "Print File":
         file = open("data.txt", "w" )
         file.write(str(gettranscription()))
+        rsp.message("Added it to your file!")
     else:
         rsp.message("If you want to print your notes, write: Print")
     return str(rsp)
