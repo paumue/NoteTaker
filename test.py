@@ -1,18 +1,22 @@
-from twilio.rest import Client
-import os
-from flask import Flask
+def formattingstring(transcription):
+    punctuation = {"exclamation mark": "!",
+                   "question mark": "?",
+                   "comma": ",",
+                   "apostrophe": "'",
+                   "colon": ";",
+                   "semi colon": ":",
+                   "open parenthesis": "(",
+                   "closed parenthesis": ")",
+                   "open brackets": "[",
+                   "close brackets": "]",
+                   "pound sign": "£",
+                   "dollar sign": "$",
+                   "asterisk": "*",
+                   "bullet": "\n -"}
+    for key in punctuation:
+        print(key)
+        transcription = transcription.replace(key, punctuation[key])
+    return transcription
 
 
-account_sid = os.environ["TWILIO_ACCOUNT_SID"]
-auth_token = os.environ["TWILIO_AUTH_TOKEN"]
-app = Flask(__name__)
-client = Client(account_sid, auth_token)
-
-
-def gettranscription():
-    transcriptions = client.transcriptions.list()
-    text = transcriptions[0].transcription_text
-    return text
-
-
-print(gettranscription())
+print(formattingstring("Can't trade summation mug punctuate questions punctuate comma punctuated apostrophe function column puncturing them a column punctured. Punctured clothes BRACA punctured po"))
