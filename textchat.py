@@ -1,17 +1,19 @@
-#Python version 3
-from distutils.core import setup
-import requests
 import os
-from twilio.rest import Client,TwilioRestClient
+from twilio.rest import Client
 from flask import Flask
-import lxml
 import xml.etree.ElementTree as ET
-from twilio.twiml.voice_response import VoiceResponse
+import requests
+from twilio.rest import Client,TwilioRestClient
 
 # Initializing environmental  variables
 
-account_sid= os.environ["twilio_account_sid"]
-auth_token = os.environ["twilio_auth_token"]
+#acount_sid= os.environ["twilio_account_sid"]
+#auth_token = os.environ["twilio_auth_token"]
+# Your Account SID from twilio.com/console
+account_sid = os.environ["TWILIO_ACCOUNT_SID"]
+# Your Auth Token from twilio.com/console
+auth_token  = os.environ["TWILIO_AUTH_TOKEN"]
+
 
 # Initializing Twilio and Flask variables
 
@@ -62,3 +64,4 @@ def voicerecord():
 
 if __name__ == "__main__":
     app.run()
+
