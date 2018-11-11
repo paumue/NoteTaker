@@ -10,9 +10,13 @@ punctuation = {"punctuate exclamation mark": "!",
                "punctuate close brackets": "]",
                "punctuate pound sign": "£",
                "punctuate dollar sign": "$",
-               "punctuate asterisk": "*"}
+               "punctuate asterisk": "*",
+               "punctuate bullet":"\n -"}
 
-F=open("data.txt", "w").read()
+with open("data.txt") as textfile:
+    data_file = textfile.read()
+    print(data_file)
 for key in punctuation:
-    while(F.find(key) != -1):
-        x = key.replage(key, punctuation[key])
+    data_file = data_file.replace(key, punctuation[key])
+f = open("data.txt","w")
+f.write(data_file)
