@@ -1,22 +1,29 @@
-punctuation = {"punctuate exclamation mark": "!",
-               "punctuate question mark": "?",
-               "punctuate comma": ",",
-               "punctuate apostrophe": "'",
-               "punctuate colon": ";",
-               "punctuate semi colon": ":",
-               "punctuate open parenthesis": "(",
-               "punctuate closed parenthesis": ")",
-               "punctuate open brackets": "[",
-               "punctuate close brackets": "]",
-               "punctuate pound sign": "£",
-               "punctuate dollar sign": "$",
-               "punctuate asterisk": "*",
-               "punctuate bullet":"\n -"}
+from difflib import SequenceMatcher
+punctuation = {"exclamation": "!",
+               "question": "?",
+               "comma": ",",
+               "period": ".",
+               "apostrophe": "'",
+               "colon": ";",
+               "semi-colon": ":",
+               "open": "(",
+               "closed": ")",
+               "pound": "£",
+               "dollar": "$",
+               "asterisk": "*",
+               "bullet":"\n -"}
 
 with open("data.txt") as textfile:
     data_file = textfile.read()
-    print(data_file)
+    word_set = data_file.split(" ")
 for key in punctuation:
-    data_file = data_file.replace(key, punctuation[key])
-f = open("data.txt","w")
-f.write(data_file)
+    for word in word_set:
+        seq = SequenceMatcher(None, key, word)
+        if (seq.quick_ratio() > .8):
+            word_set[word_set.index(word)] = punctuation.get(key)
+newdata = ""
+for element in word_set:
+    newdata = newdata + element + " "
+file = open("finaldata.txt","w")
+file.write(newdata)
+
